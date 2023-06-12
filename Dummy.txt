@@ -104,3 +104,98 @@ app.delete("/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server connected at the port ${port}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// front end 
+
+import React from 'react'
+const Form =()=>{
+    const[one,setone]=React.useState("")
+    const[two,settwo]=React.useState("")
+    const[three,setthree]=React.useState("")
+    const[dd,setdd]=React.useState([]);
+
+
+    return(
+        <>
+       <div>
+        <center>
+        <form onSubmit={(e)=>{
+            e.preventDefault();
+            console.log(one,two,three)
+            setdd((pre)=>{
+                return [...pre,{
+                    username :one,
+                    email:two,
+                    password:three
+,                }
+                ]
+            })
+            
+
+        }}>
+                    <label>username</label>
+                    <input onChange={(e)=>{
+                        setone(e.target.value)}} 
+                     type="text" name="username" placeholder="username"/><br/>
+                    <label>email</label>
+                    <input onChange={(e)=>{
+                        settwo(e.target.value)}} type="email" name="email" placeholder="email"/><br/>
+                    <label>password</label>
+                    <input onChange={(e)=>{
+                        setthree(e.target.value)}} type="password" name="password" placeholder="password"/><br/>
+                    <button type='submit'>submit</button>
+                </form>
+                </center>
+            
+       </div>
+       <div>
+        <center>
+            <table>
+            <thead>
+            <th>username</th>
+                <th>email</th>
+                <th>password</th>
+
+            </thead>
+            <tbody>
+                {
+                    dd.length !==0 &&
+                    dd.map((da)=>(
+                        <tr>
+                            <td>{da.username}</td>
+                            <td>{da.email}</td>
+                            <td>{da.password}</td>
+                        </tr>
+                    ))
+                }
+                
+            </tbody>
+            </table>
+            
+               
+        </center>
+       </div>
+
+       </>
+        
+                
+    )
+}
+export default Form;
+
+
+
